@@ -186,7 +186,7 @@ def main_worker(args):
 
     total_end = time.time()
     logger.info('||==> total_time_cost={:.4f}s'.format(total_end - total_start))
-
+    writer.close()
 
 def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer):
     batch_time = AverageMeter('Time', ':6.3f')
