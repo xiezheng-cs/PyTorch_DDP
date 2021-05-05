@@ -105,7 +105,8 @@ def accuracy(scores, targets, k=1):
     return correct_total.item() * (1.0 / batch_size)
 
 
-def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
+def save_checkpoint(state, is_best, outpath):
+    filename = os.path.join(outpath, 'checkpoint.pth.tar')
     torch.save(state, filename)
     if is_best:
-        shutil.copyfile(filename, 'model_best.pth.tar')
+        shutil.copyfile(filename, os.path.join(outpath, 'model_best.pth.tar'))
