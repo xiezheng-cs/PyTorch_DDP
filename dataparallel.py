@@ -44,11 +44,11 @@ parser.add_argument('-j', '--workers', default=8, type=int, metavar='N', help='n
 
 # parser.add_argument('--epochs', default=90, type=int, metavar='N', help='number of total epochs to run')
 # parser.add_argument('--step', default=[30, 60], metavar='step decay', help='lr decay by step')
-parser.add_argument('--epochs', default=10, type=int, metavar='N', help='number of total epochs to run')
-parser.add_argument('--step', default=[6, 8], metavar='step decay', help='lr decay by step')
+parser.add_argument('--epochs', default=5, type=int, metavar='N', help='number of total epochs to run')
+parser.add_argument('--step', default=[3,4], metavar='step decay', help='lr decay by step')
 
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N', help='manual epoch number ()')
-parser.add_argument('-b', '--batch-size', default=1600, type=int, metavar='N',
+parser.add_argument('-b', '--batch-size', default=1200, type=int, metavar='N',
                     help='mini-batch size (default: 3200), this is the total batch size of all GPUs on the current node '
                          'when using Data Parallel or Distributed Data Parallel')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float, metavar='LR', help='initial learning rate', dest='lr')
@@ -60,7 +60,7 @@ parser.add_argument('-e', '--evaluate', dest='evaluate', default=False, type=boo
 parser.add_argument('--pretrained', dest='pretrained', default=False, type=bool, help='use pre-trained model')
 parser.add_argument('--seed', default=None, type=int, help='seed for initializing training')
 
-parser.add_argument('--gpus', default='4,5,6,7', metavar='gpus_id', help='N gpus for training')
+parser.add_argument('--gpus', default='5,6,7', metavar='gpus_id', help='N gpus for training')
 parser.add_argument('--outpath', metavar='DIR', default='./output', help='path to output')
 parser.add_argument('--lr-scheduler', metavar='LR scheduler', default='steplr', help='LR scheduler', dest='lr_scheduler')
 parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='gamma')
@@ -154,6 +154,7 @@ def main_worker(args):
         validate(val_loader, model, criterion, args, logger, writer, epoch=-1)
         return 0
 
+    total_start = time.time()
     for epoch in range(args.start_epoch, args.epochs):
         epoch_start = time.time()
         lr_scheduler.step(epoch)
@@ -171,7 +172,7 @@ def main_worker(args):
             best_acc1 = acc1
 
         epoch_end = time.time()
-        logger.info('\n||==> Epoch=[{:d}/{:d}], best_acc1={:.4f}, best_acc1_index={}, time_cost={:.4f}s'
+        logger.info('||==> Epoch=[{:d}/{:d}]\tbest_acc1={:.4f}\tbest_acc1_index={}\ttime_cost={:.4f}s'
                     .format(epoch, args.epochs, best_acc1, best_acc1_index, epoch_end - epoch_start))
 
         # save model
@@ -182,6 +183,9 @@ def main_worker(args):
                 'state_dict': model.module.state_dict(),
                 'best_acc1': best_acc1,
             }, is_best, args.outpath)
+
+    total_end = time.time()
+    logger.info('||==> total_time_cost={:.4f}s'.format(total_end - total_start))
 
 
 def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer):
@@ -272,7 +276,6 @@ def validate(val_loader, model, criterion, args, logger, writer, epoch):
         logger.info('||==> Val epoch: [{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
                     .format(epoch, args.epochs, losses.avg, top1.avg, batch_time.avg))
         return top1.avg
-
 
 
 if __name__ == '__main__':
