@@ -3,4 +3,4 @@
 # @Time    : 2021/5/3 21:30
 # @Author  : xiezheng
 # @Site    : 
-# @File    : apex_distributed.py
+# @File    : distributed_bn_amp.py
