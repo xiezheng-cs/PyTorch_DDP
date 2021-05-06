@@ -67,7 +67,7 @@ parser.add_argument('--seed', default=None, type=int, help='seed for initializin
 parser.add_argument('--local_rank', default=0, type=int, help='node rank for distributed training')
 
 parser.add_argument('--gpus', default='0,1,2', metavar='gpus_id', help='N gpus for training')
-parser.add_argument('--outpath', metavar='DIR', default='./output_ddp', help='path to output')
+parser.add_argument('--outpath', metavar='DIR', default='./output_ddp_test', help='path to output')
 parser.add_argument('--lr-scheduler', metavar='LR scheduler', default='steplr', help='LR scheduler', dest='lr_scheduler')
 parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='gamma')
 # parser.print_help()
@@ -217,7 +217,9 @@ def main_worker(local_rank, args):
 
     total_end = time.time()
     ddp_print('||==> total_time_cost={:.4f}s'.format(total_end - total_start), logger, local_rank)
-    writer.close()
+
+    if args.local_rank == 0:
+        writer.close()
 
 
 def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer, local_rank):
@@ -266,7 +268,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
             ddp_print('Train epoch: [{:d}/{:d}][{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tdata_time={:6.3f}s'
                         '\tbatch_time={:6.3f}s'.format(epoch, args.epochs, i, len(train_loader), get_learning_rate(optimizer),
                                                       losses.avg, top1.avg, data_times.avg, batch_times.avg), logger, local_rank)
-        # break
+        break
 
     ddp_print('||==> Train epoch: [{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
               .format(epoch, args.epochs, get_learning_rate(optimizer), losses.avg, top1.avg,
@@ -318,7 +320,7 @@ def validate(val_loader, model, criterion, args, logger, writer, epoch, local_ra
                 ddp_print('Val epoch: [{:d}/{:d}][{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
                             .format(epoch, args.epochs, i, len(val_loader), losses.avg, top1.avg, batch_times.avg),
                           logger, local_rank)
-            # break
+            break
 
         ddp_print('||==> Val epoch: [{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
                   .format(epoch, args.epochs, losses.avg, top1.avg, batch_times.avg), logger, local_rank)
