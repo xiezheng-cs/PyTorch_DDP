@@ -217,7 +217,9 @@ def main_worker(local_rank, args):
 
     total_end = time.time()
     ddp_print('||==> total_time_cost={:.4f}s'.format(total_end - total_start), logger, local_rank)
-    writer.close()
+
+    if args.local_rank == 0:
+        writer.close()
 
 
 def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer, local_rank):
@@ -277,7 +279,6 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         writer.add_scalar('lr', get_learning_rate(optimizer), epoch)
         writer.add_scalar('Train_ce_loss', losses.avg, epoch)
         writer.add_scalar('Train_top1_accuracy', top1.avg, epoch)
-
 
 
 def validate(val_loader, model, criterion, args, logger, writer, epoch, local_rank):

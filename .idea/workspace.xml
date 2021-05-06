@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b5c033c-d690-4c43-b908-7c119faca404" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/distributed.py" afterPath="$PROJECT_DIR$/distributed.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/distributed_syncBN_amp.py" afterPath="$PROJECT_DIR$/distributed_syncBN_amp.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,7 +31,7 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="552">
               <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
               <folding>
                 <element signature="e#244#859#0" expanded="false" />
@@ -44,29 +45,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="distributed.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/distributed.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="311" column="37" lean-forward="true" selection-start-line="311" selection-start-column="37" selection-end-line="311" selection-end-column="37" />
-              <folding>
-                <element signature="e#140#150#0" expanded="true" />
-                <element signature="e#6786#6929#0" expanded="false" />
-                <element signature="e#7222#7347#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="distributed_syncBN_amp.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="distributed_syncBN_amp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+            <state relative-caret-position="674">
+              <caret line="282" column="0" lean-forward="false" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
               <folding>
                 <element signature="e#151#161#0" expanded="true" />
                 <element signature="e#6792#6935#0" expanded="false" />
                 <element signature="e#7228#7353#0" expanded="false" />
+                <element signature="e#9256#11454#0" expanded="false" />
+                <element signature="e#11546#13411#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -351,21 +340,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
+    <entry file="file://$PROJECT_DIR$/distributed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+        <state relative-caret-position="170">
+          <caret line="105" column="34" lean-forward="true" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="34" />
           <folding>
-            <element signature="e#151#161#0" expanded="true" />
-            <element signature="e#6792#6935#0" expanded="false" />
-            <element signature="e#7228#7353#0" expanded="false" />
+            <element signature="e#140#150#0" expanded="true" />
+            <element signature="e#6786#6929#0" expanded="false" />
+            <element signature="e#7222#7347#0" expanded="false" />
+            <element signature="e#9250#11446#0" expanded="false" />
+            <element signature="e#11538#13401#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="552">
           <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
           <folding>
             <element signature="e#244#859#0" expanded="false" />
@@ -378,14 +369,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/distributed.py">
+    <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="311" column="37" lean-forward="true" selection-start-line="311" selection-start-column="37" selection-end-line="311" selection-end-column="37" />
+        <state relative-caret-position="674">
+          <caret line="282" column="0" lean-forward="false" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
           <folding>
-            <element signature="e#140#150#0" expanded="true" />
-            <element signature="e#6786#6929#0" expanded="false" />
-            <element signature="e#7222#7347#0" expanded="false" />
+            <element signature="e#151#161#0" expanded="true" />
+            <element signature="e#6792#6935#0" expanded="false" />
+            <element signature="e#7228#7353#0" expanded="false" />
+            <element signature="e#9256#11454#0" expanded="false" />
+            <element signature="e#11546#13411#0" expanded="false" />
           </folding>
         </state>
       </provider>
