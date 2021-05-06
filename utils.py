@@ -69,6 +69,11 @@ def get_learning_rate(optimizer):
     return lr[0]
 
 
+def ddp_print(ouput, logger, local_rank):
+    if local_rank == 0:
+        logger.info(ouput)
+
+
 # Follow project
 class AverageMeter(object):
     """

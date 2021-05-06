@@ -32,7 +32,7 @@ from torch.optim.lr_scheduler import MultiStepLR
 from tensorboardX import SummaryWriter
 
 from utils import get_logger, write_settings, output_process, AverageMeter, \
-    get_learning_rate, accuracy, save_checkpoint
+    get_learning_rate, accuracy, save_checkpoint, ddp_print
 
 
 model_names = sorted(name for name in models.__dict__ if name.islower()
@@ -106,27 +106,32 @@ def main():
 def main_worker(local_rank, args):
     best_acc1 = 0
     best_acc1_index = 0
+    logger = None
+    writer = None
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpus
+    # os.environ['CUDA_VISIBLE_DEVICES'] = args.gpus
     args.outpath = args.outpath + '_' + args.arch
-    output_process(args.outpath)
-    logger = get_logger(args.outpath, 'DataParallel')
-    writer = SummaryWriter(args.outpath)
+
+    if args.local_rank == 0:
+        output_process(args.outpath)
+        logger = get_logger(args.outpath, 'DataParallel')
+        writer = SummaryWriter(args.outpath)
 
     # distributed init
     args.nprocs = torch.cuda.device_count()
     dist.init_process_group(backend='nccl')
     torch.cuda.set_device(device=local_rank)
 
-    write_settings(args)
-    logger.info(args)
+    if args.local_rank == 0:
+        write_settings(args)
+        logger.info(args)
 
     # create model
     if args.pretrained:
-        logger.info("=> using pre-trained model: {}".format(args.arch))
+        ddp_print("=> using pre-trained model: {}".format(args.arch), logger, local_rank)
         model = models.__dict__[args.arch](pretrained=True)
     else:
-        logger.info('=> creating model: {}'.format(args.arch))
+        ddp_print('=> creating model: {}'.format(args.arch), logger, local_rank)
         model = models.__dict__[args.arch]()
 
     model = model.cuda(device=local_rank)
@@ -142,10 +147,9 @@ def main_worker(local_rank, args):
 
     if args.lr_scheduler == 'steplr':
         lr_scheduler = MultiStepLR(optimizer, milestones=args.step, gamma=args.gamma)
-        logger.info('lr_scheduler: SGD MultiStepLR !!!')
+        ddp_print('lr_scheduler: SGD MultiStepLR !!!', logger, local_rank)
     else:
-        assert False, logger.info("invalid lr_scheduler={}".format(args.lr_scheduler))
-    # logger.info('lr_scheduler={}'.format(lr_scheduler))
+        assert False, ddp_print("invalid lr_scheduler={}".format(args.lr_scheduler), logger, local_rank)
 
     # dataloader
     traindir = os.path.join(args.data, 'train')
@@ -199,8 +203,8 @@ def main_worker(local_rank, args):
 
         epoch_end = time.time()
         if args.local_rank == 0:
-            logger.info('||==> Epoch=[{:d}/{:d}]\tbest_acc1={:.4f}\tbest_acc1_index={}\ttime_cost={:.4f}s'
-                        .format(epoch, args.epochs, best_acc1, best_acc1_index, epoch_end - epoch_start))
+            ddp_print('||==> Epoch=[{:d}/{:d}]\tbest_acc1={:.4f}\tbest_acc1_index={}\ttime_cost={:.4f}s'
+                        .format(epoch, args.epochs, best_acc1, best_acc1_index, epoch_end - epoch_start),  logger, local_rank)
 
             # save model
             save_checkpoint(
@@ -213,7 +217,7 @@ def main_worker(local_rank, args):
 
     total_end = time.time()
     if args.local_rank == 0:
-        logger.info('||==> total_time_cost={:.4f}s'.format(total_end - total_start))
+        ddp_print('||==> total_time_cost={:.4f}s'.format(total_end - total_start), logger, local_rank)
     writer.close()
 
 
@@ -263,9 +267,9 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         end = time.time()
 
         if args.local_rank == 0 and i % args.print_freq == 0:
-            logger.info('Train epoch: [{:d}/{:d}][{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tdata_time={:6.3f}s'
+            ddp_print('Train epoch: [{:d}/{:d}][{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tdata_time={:6.3f}s'
                         '\tbatch_time={:6.3f}s'.format(epoch, args.epochs, i, len(train_loader), get_learning_rate(optimizer),
-                                                      losses.avg, top1.avg, data_times.avg, batch_times.avg))
+                                                      losses.avg, top1.avg, data_times.avg, batch_times.avg), logger, local_rank)
         # break
 
     if args.local_rank == 0:
@@ -274,8 +278,9 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         writer.add_scalar('Train_ce_loss', losses.avg, epoch)
         writer.add_scalar('Train_top1_accuracy', top1.avg, epoch)
 
-        logger.info('||==> Train epoch: [{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
-                    .format(epoch, args.epochs, get_learning_rate(optimizer), losses.avg, top1.avg, batch_times.avg))
+        ddp_print('||==> Train epoch: [{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
+                    .format(epoch, args.epochs, get_learning_rate(optimizer), losses.avg, top1.avg,
+                            batch_times.avg), logger, local_rank)
 
 
 def validate(val_loader, model, criterion, args, logger, writer, epoch, local_rank):
@@ -314,8 +319,9 @@ def validate(val_loader, model, criterion, args, logger, writer, epoch, local_ra
             end = time.time()
 
             if args.local_rank == 0 and i % args.print_freq == 0:
-                logger.info('Val epoch: [{:d}/{:d}][{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
-                            .format(epoch, args.epochs, i, len(val_loader), losses.avg, top1.avg, batch_times.avg))
+                ddp_print('Val epoch: [{:d}/{:d}][{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
+                            .format(epoch, args.epochs, i, len(val_loader), losses.avg, top1.avg, batch_times.avg),
+                          logger, local_rank)
             # break
 
         if args.local_rank == 0:
@@ -323,8 +329,8 @@ def validate(val_loader, model, criterion, args, logger, writer, epoch, local_ra
             writer.add_scalar('Val_ce_loss', losses.avg, epoch)
             writer.add_scalar('Val_top1_accuracy', top1.avg, epoch)
 
-            logger.info('||==> Val epoch: [{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
-                        .format(epoch, args.epochs, losses.avg, top1.avg, batch_times.avg))
+            ddp_print('||==> Val epoch: [{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
+                        .format(epoch, args.epochs, losses.avg, top1.avg, batch_times.avg), logger, local_rank)
 
         return top1.avg
 
