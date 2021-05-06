@@ -75,8 +75,7 @@ parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='g
 
 
 def reduce_mean(tensor, nprocs):
-    if not isinstance(tensor, (float, int)):
-        rt = tensor.clone()
+    rt = tensor.clone()
     dist.all_reduce(rt, op=dist.ReduceOp.SUM)
     rt /= nprocs
     return rt
@@ -234,6 +233,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
     for i, (images, target) in enumerate(train_loader):
         # measure data loading time
         data_time = time.time() - end
+        data_times.update(data_time)
 
         images = images.cuda(local_rank, non_blocking=True)
         target = target.cuda(local_rank, non_blocking=True)
@@ -249,11 +249,9 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         dist.barrier()
         reduced_loss = reduce_mean(loss, args.nprocs)
         reduced_acc1 = reduce_mean(acc1, args.nprocs)
-        reduced_data_time = reduce_mean(data_time, args.nprocs)
 
         losses.update(reduced_loss.item(), images.size(0))
         top1.update(reduced_acc1, images.size(0))
-        data_times.update(reduced_data_time)
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
@@ -261,9 +259,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         optimizer.step()
 
         # measure elapsed time
-        batch_time = time.time() - end
-        reduced_batch_time = reduce_mean(batch_time, args.nprocs)
-        batch_times.update(reduced_batch_time)
+        batch_times.update(time.time() - end)
         end = time.time()
 
         if i % args.print_freq == 0:
@@ -315,8 +311,7 @@ def validate(val_loader, model, criterion, args, logger, writer, epoch, local_ra
 
             # measure elapsed time
             batch_time = time.time() - end
-            reduced_batch_time = reduce_mean(batch_time, args.nprocs)
-            batch_times.update(reduced_batch_time)
+            batch_times.update(batch_time)
             end = time.time()
 
             if i % args.print_freq == 0:

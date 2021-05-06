@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b5c033c-d690-4c43-b908-7c119faca404" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/distributed.py" afterPath="$PROJECT_DIR$/distributed.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/start.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="48">
-              <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+              <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="115" />
               <folding />
             </state>
           </provider>
@@ -30,12 +31,12 @@
       <file leaf-file-name="distributed.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/distributed.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+            <state relative-caret-position="506">
+              <caret line="265" column="17" lean-forward="true" selection-start-line="265" selection-start-column="17" selection-end-line="265" selection-end-column="17" />
               <folding>
                 <element signature="e#140#150#0" expanded="true" />
-                <element signature="e#6830#6973#0" expanded="false" />
-                <element signature="e#7266#7391#0" expanded="false" />
+                <element signature="e#6781#6924#0" expanded="false" />
+                <element signature="e#7217#7342#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -44,8 +45,8 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
-              <caret line="110" column="24" lean-forward="false" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
+            <state relative-caret-position="488">
+              <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
               <folding>
                 <element signature="e#244#859#0" expanded="false" />
                 <element signature="e#899#1302#0" expanded="false" />
@@ -79,6 +80,7 @@
       <find>epochs</find>
       <find>accuracy</find>
       <find>logger</find>
+      <find>_time</find>
     </findStrings>
     <replaceStrings>
       <replace>logger.info</replace>
@@ -337,15 +339,15 @@
     <entry file="file://$PROJECT_DIR$/start.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
-          <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="115" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="110" column="24" lean-forward="false" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
+        <state relative-caret-position="488">
+          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
           <folding>
             <element signature="e#244#859#0" expanded="false" />
             <element signature="e#899#1302#0" expanded="false" />
@@ -359,12 +361,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/distributed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        <state relative-caret-position="506">
+          <caret line="265" column="17" lean-forward="true" selection-start-line="265" selection-start-column="17" selection-end-line="265" selection-end-column="17" />
           <folding>
             <element signature="e#140#150#0" expanded="true" />
-            <element signature="e#6830#6973#0" expanded="false" />
-            <element signature="e#7266#7391#0" expanded="false" />
+            <element signature="e#6781#6924#0" expanded="false" />
+            <element signature="e#7217#7342#0" expanded="false" />
           </folding>
         </state>
       </provider>
