@@ -281,7 +281,6 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         writer.add_scalar('Train_top1_accuracy', top1.avg, epoch)
 
 
-
 def validate(val_loader, model, criterion, args, logger, writer, epoch, local_rank):
     batch_times = AverageMeter('Time', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')   # 4e表示科学记数法中的4位小数
