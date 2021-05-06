@@ -32,12 +32,10 @@
       <file leaf-file-name="distributed.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/distributed.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="332" column="98" lean-forward="false" selection-start-line="332" selection-start-column="92" selection-end-line="332" selection-end-column="98" />
+            <state relative-caret-position="320">
+              <caret line="244" column="19" lean-forward="false" selection-start-line="244" selection-start-column="19" selection-end-line="244" selection-end-column="19" />
               <folding>
                 <element signature="e#140#150#0" expanded="true" />
-                <element signature="e#3821#3917#0" expanded="false" />
-                <element signature="e#3936#4684#0" expanded="false" />
                 <element signature="e#6781#6924#0" expanded="false" />
                 <element signature="e#7217#7342#0" expanded="false" />
               </folding>
@@ -48,16 +46,15 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="71" column="29" lean-forward="false" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+            <state relative-caret-position="626">
+              <caret line="110" column="24" lean-forward="false" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
               <folding>
                 <element signature="e#244#859#0" expanded="false" />
                 <element signature="e#899#1302#0" expanded="false" />
                 <element signature="e#1339#1604#0" expanded="false" />
                 <element signature="e#1645#1750#0" expanded="false" />
                 <element signature="e#1897#2486#0" expanded="false" />
-                <element signature="e#2529#2781#0" expanded="false" />
-                <element signature="e#2834#3015#0" expanded="false" />
+                <element signature="e#2882#3063#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -99,9 +96,9 @@
         <option value="$PROJECT_DIR$/accelerate_distributed.py" />
         <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/dataparallel.py" />
+        <option value="$PROJECT_DIR$/distributed.py" />
         <option value="$PROJECT_DIR$/start.sh" />
         <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/distributed.py" />
       </list>
     </option>
   </component>
@@ -349,28 +346,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="71" column="29" lean-forward="false" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+        <state relative-caret-position="626">
+          <caret line="110" column="24" lean-forward="false" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
           <folding>
             <element signature="e#244#859#0" expanded="false" />
             <element signature="e#899#1302#0" expanded="false" />
             <element signature="e#1339#1604#0" expanded="false" />
             <element signature="e#1645#1750#0" expanded="false" />
             <element signature="e#1897#2486#0" expanded="false" />
-            <element signature="e#2529#2781#0" expanded="false" />
-            <element signature="e#2834#3015#0" expanded="false" />
+            <element signature="e#2882#3063#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/distributed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="332" column="98" lean-forward="false" selection-start-line="332" selection-start-column="92" selection-end-line="332" selection-end-column="98" />
+        <state relative-caret-position="320">
+          <caret line="244" column="19" lean-forward="false" selection-start-line="244" selection-start-column="19" selection-end-line="244" selection-end-column="19" />
           <folding>
             <element signature="e#140#150#0" expanded="true" />
-            <element signature="e#3821#3917#0" expanded="false" />
-            <element signature="e#3936#4684#0" expanded="false" />
             <element signature="e#6781#6924#0" expanded="false" />
             <element signature="e#7217#7342#0" expanded="false" />
           </folding>

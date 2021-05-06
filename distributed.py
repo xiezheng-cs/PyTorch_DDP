@@ -66,7 +66,7 @@ parser.add_argument('--seed', default=None, type=int, help='seed for initializin
 # distributed
 parser.add_argument('--local_rank', default=0, type=int, help='node rank for distributed training')
 
-parser.add_argument('--gpus', default='3,6,7', metavar='gpus_id', help='N gpus for training')
+parser.add_argument('--gpus', default='0,1,2', metavar='gpus_id', help='N gpus for training')
 parser.add_argument('--outpath', metavar='DIR', default='./output_ddp', help='path to output')
 parser.add_argument('--lr-scheduler', metavar='LR scheduler', default='steplr', help='LR scheduler', dest='lr_scheduler')
 parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='gamma')
@@ -202,10 +202,10 @@ def main_worker(local_rank, args):
             best_acc1 = acc1
 
         epoch_end = time.time()
-        if args.local_rank == 0:
-            ddp_print('||==> Epoch=[{:d}/{:d}]\tbest_acc1={:.4f}\tbest_acc1_index={}\ttime_cost={:.4f}s'
-                        .format(epoch, args.epochs, best_acc1, best_acc1_index, epoch_end - epoch_start),  logger, local_rank)
+        ddp_print('||==> Epoch=[{:d}/{:d}]\tbest_acc1={:.4f}\tbest_acc1_index={}\ttime_cost={:.4f}s'
+                  .format(epoch, args.epochs, best_acc1, best_acc1_index, epoch_end - epoch_start), logger, local_rank)
 
+        if args.local_rank == 0:
             # save model
             save_checkpoint(
                 {
@@ -216,8 +216,7 @@ def main_worker(local_rank, args):
                 }, is_best, args.outpath)
 
     total_end = time.time()
-    if args.local_rank == 0:
-        ddp_print('||==> total_time_cost={:.4f}s'.format(total_end - total_start), logger, local_rank)
+    ddp_print('||==> total_time_cost={:.4f}s'.format(total_end - total_start), logger, local_rank)
     writer.close()
 
 
@@ -266,11 +265,15 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         batch_times.update(reduced_batch_time)
         end = time.time()
 
-        if args.local_rank == 0 and i % args.print_freq == 0:
+        if i % args.print_freq == 0:
             ddp_print('Train epoch: [{:d}/{:d}][{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tdata_time={:6.3f}s'
                         '\tbatch_time={:6.3f}s'.format(epoch, args.epochs, i, len(train_loader), get_learning_rate(optimizer),
                                                       losses.avg, top1.avg, data_times.avg, batch_times.avg), logger, local_rank)
         # break
+
+    ddp_print('||==> Train epoch: [{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
+              .format(epoch, args.epochs, get_learning_rate(optimizer), losses.avg, top1.avg,
+                      batch_times.avg), logger, local_rank)
 
     if args.local_rank == 0:
         # save tensorboard
@@ -278,9 +281,6 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         writer.add_scalar('Train_ce_loss', losses.avg, epoch)
         writer.add_scalar('Train_top1_accuracy', top1.avg, epoch)
 
-        ddp_print('||==> Train epoch: [{:d}/{:d}]\tlr={:.6f}\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
-                    .format(epoch, args.epochs, get_learning_rate(optimizer), losses.avg, top1.avg,
-                            batch_times.avg), logger, local_rank)
 
 
 def validate(val_loader, model, criterion, args, logger, writer, epoch, local_rank):
@@ -318,19 +318,19 @@ def validate(val_loader, model, criterion, args, logger, writer, epoch, local_ra
             batch_times.update(reduced_batch_time)
             end = time.time()
 
-            if args.local_rank == 0 and i % args.print_freq == 0:
+            if i % args.print_freq == 0:
                 ddp_print('Val epoch: [{:d}/{:d}][{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
                             .format(epoch, args.epochs, i, len(val_loader), losses.avg, top1.avg, batch_times.avg),
                           logger, local_rank)
             # break
 
+        ddp_print('||==> Val epoch: [{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
+                  .format(epoch, args.epochs, losses.avg, top1.avg, batch_times.avg), logger, local_rank)
+
         if args.local_rank == 0:
             # save tensorboard
             writer.add_scalar('Val_ce_loss', losses.avg, epoch)
             writer.add_scalar('Val_top1_accuracy', top1.avg, epoch)
-
-            ddp_print('||==> Val epoch: [{:d}/{:d}]\tce_loss={:.4f}\ttop1_acc={:.4f}\tbatch_time={:6.3f}s'
-                        .format(epoch, args.epochs, losses.avg, top1.avg, batch_times.avg), logger, local_rank)
 
         return top1.avg
 

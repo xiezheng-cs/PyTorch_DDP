@@ -107,7 +107,8 @@ def accuracy(scores, targets, k=1):
     _, ind = scores.topk(k, 1, True, True)
     correct = ind.eq(targets.long().view(-1, 1).expand_as(ind))
     correct_total = correct.view(-1).float().sum()  # 0D tensor
-    return correct_total.item() * (1.0 / batch_size)
+    # return correct_total.item() * (1.0 / batch_size)
+    return correct_total * (1.0 / batch_size)
 
 
 def save_checkpoint(state, is_best, outpath):
