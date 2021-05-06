@@ -75,7 +75,8 @@ parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='g
 
 
 def reduce_mean(tensor, nprocs):
-    rt = tensor.clone()
+    if not isinstance(tensor, (float, int)):
+        rt = tensor.clone()
     dist.all_reduce(rt, op=dist.ReduceOp.SUM)
     rt /= nprocs
     return rt

@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2b5c033c-d690-4c43-b908-7c119faca404" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/distributed.py" afterPath="$PROJECT_DIR$/distributed.py" />
-      <change beforePath="$PROJECT_DIR$/start.sh" afterPath="$PROJECT_DIR$/start.sh" />
-      <change beforePath="$PROJECT_DIR$/utils.py" afterPath="$PROJECT_DIR$/utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/start.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="48">
-              <caret line="2" column="115" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="115" />
+              <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -32,12 +30,12 @@
       <file leaf-file-name="distributed.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/distributed.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="244" column="19" lean-forward="false" selection-start-line="244" selection-start-column="19" selection-end-line="244" selection-end-column="19" />
+            <state relative-caret-position="296">
+              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="e#140#150#0" expanded="true" />
-                <element signature="e#6781#6924#0" expanded="false" />
-                <element signature="e#7217#7342#0" expanded="false" />
+                <element signature="e#6830#6973#0" expanded="false" />
+                <element signature="e#7266#7391#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -96,9 +94,9 @@
         <option value="$PROJECT_DIR$/accelerate_distributed.py" />
         <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/dataparallel.py" />
-        <option value="$PROJECT_DIR$/distributed.py" />
         <option value="$PROJECT_DIR$/start.sh" />
         <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/distributed.py" />
       </list>
     </option>
   </component>
@@ -339,7 +337,7 @@
     <entry file="file://$PROJECT_DIR$/start.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
-          <caret line="2" column="115" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="115" />
+          <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -361,12 +359,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/distributed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="244" column="19" lean-forward="false" selection-start-line="244" selection-start-column="19" selection-end-line="244" selection-end-column="19" />
+        <state relative-caret-position="296">
+          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
             <element signature="e#140#150#0" expanded="true" />
-            <element signature="e#6781#6924#0" expanded="false" />
-            <element signature="e#7217#7342#0" expanded="false" />
+            <element signature="e#6830#6973#0" expanded="false" />
+            <element signature="e#7266#7391#0" expanded="false" />
           </folding>
         </state>
       </provider>
