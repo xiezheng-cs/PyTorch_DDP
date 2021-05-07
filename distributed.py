@@ -40,7 +40,7 @@ model_names = sorted(name for name in models.__dict__ if name.islower()
 # print(model_names)
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
-parser.add_argument('--data', metavar='DIR', default='/mnt/ssd/imagenet/', help='path to dataset')
+parser.add_argument('--data', metavar='DIR', default='/mnt/cephfs/mixed/dataset/imagenet/', help='path to dataset')
 parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet18', choices=model_names,
                     help='model architecture: ' + ' | '.join(model_names) + '(default: resnet18)')
 parser.add_argument('-j', '--workers', default=8, type=int, metavar='N', help='number of data loading workers (default: 4)')
