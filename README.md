@@ -9,7 +9,7 @@ model = resnet18，dataset = ImageNet，epoch = 5， batch_size = 1200，GPUs_nu
 |                 Method                 | Memory (MB) | Time (s) | ImageNet Top1 Acc(%) |
 | :------------------------------------: | :---------: | :------: | :------------------: |
 |              DataParallel              |    11329    |   7633   |        46.71         |
-|        DistributedDataParallel         |    11329    |   4612   |        46.83         |
+|        DistributedDataParallel         |    11329    | **4612** |      **46.83**       |
 |     DistributedDataParallel + amp      |    8679     |   4680   |        46.74         |
 | DistributedDataParallel + amp + SyncBN |    8679     |   8173   |        46.78         |
 
