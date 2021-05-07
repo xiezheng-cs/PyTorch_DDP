@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b5c033c-d690-4c43-b908-7c119faca404" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/dataparallel.py" afterPath="$PROJECT_DIR$/dataparallel.py" />
-      <change beforePath="$PROJECT_DIR$/distributed.py" afterPath="$PROJECT_DIR$/distributed.py" />
-      <change beforePath="$PROJECT_DIR$/distributed_syncBN_amp.py" afterPath="$PROJECT_DIR$/distributed_syncBN_amp.py" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +20,8 @@
       <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/start.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" column="126" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="126" />
+            <state relative-caret-position="24">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -32,8 +30,8 @@
       <file leaf-file-name="dataparallel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataparallel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="39" column="89" lean-forward="false" selection-start-line="39" selection-start-column="54" selection-end-line="39" selection-end-column="89" />
+            <state relative-caret-position="319">
+              <caret line="104" column="51" lean-forward="false" selection-start-line="104" selection-start-column="39" selection-end-line="104" selection-end-column="51" />
               <folding>
                 <element signature="e#141#151#0" expanded="true" />
                 <element signature="e#5861#6004#0" expanded="false" />
@@ -49,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/distributed.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="386">
-              <caret line="42" column="89" lean-forward="false" selection-start-line="42" selection-start-column="89" selection-end-line="42" selection-end-column="89" />
+              <caret line="116" column="66" lean-forward="false" selection-start-line="116" selection-start-column="43" selection-end-line="116" selection-end-column="66" />
               <folding>
                 <element signature="e#140#150#0" expanded="true" />
                 <element signature="e#3843#3939#0" expanded="false" />
@@ -63,11 +61,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="distributed_syncBN_amp.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="336">
+                <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="distributed_syncBN_amp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="43" column="60" lean-forward="false" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
+            <state relative-caret-position="264">
+              <caret line="44" column="43" lean-forward="true" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
               <folding>
                 <element signature="e#151#166#0" expanded="true" />
                 <element signature="e#4240#4336#0" expanded="false" />
@@ -122,6 +133,7 @@
         <option value="$PROJECT_DIR$/dataparallel.py" />
         <option value="$PROJECT_DIR$/distributed.py" />
         <option value="$PROJECT_DIR$/distributed_syncBN_amp.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -356,29 +368,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="48">
-            <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/start.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="126" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="126" />
+        <state relative-caret-position="24">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dataparallel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="39" column="89" lean-forward="false" selection-start-line="39" selection-start-column="54" selection-end-line="39" selection-end-column="89" />
+        <state relative-caret-position="319">
+          <caret line="104" column="51" lean-forward="false" selection-start-line="104" selection-start-column="39" selection-end-line="104" selection-end-column="51" />
           <folding>
             <element signature="e#141#151#0" expanded="true" />
             <element signature="e#5861#6004#0" expanded="false" />
@@ -389,10 +390,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="44" column="43" lean-forward="true" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+          <folding>
+            <element signature="e#151#166#0" expanded="true" />
+            <element signature="e#4240#4336#0" expanded="false" />
+            <element signature="e#4355#5103#0" expanded="false" />
+            <element signature="e#7499#7642#0" expanded="false" />
+            <element signature="e#7935#8060#0" expanded="false" />
+            <element signature="e#12433#14298#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/distributed.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
-          <caret line="42" column="89" lean-forward="false" selection-start-line="42" selection-start-column="89" selection-end-line="42" selection-end-column="89" />
+          <caret line="116" column="66" lean-forward="false" selection-start-line="116" selection-start-column="43" selection-end-line="116" selection-end-column="66" />
           <folding>
             <element signature="e#140#150#0" expanded="true" />
             <element signature="e#3843#3939#0" expanded="false" />
@@ -405,18 +421,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="43" column="60" lean-forward="false" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
-          <folding>
-            <element signature="e#151#166#0" expanded="true" />
-            <element signature="e#4240#4336#0" expanded="false" />
-            <element signature="e#4355#5103#0" expanded="false" />
-            <element signature="e#7499#7642#0" expanded="false" />
-            <element signature="e#7935#8060#0" expanded="false" />
-            <element signature="e#12433#14298#0" expanded="false" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="336">
+            <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
