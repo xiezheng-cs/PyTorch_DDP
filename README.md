@@ -13,6 +13,8 @@ model = resnet18，dataset = ImageNet，epoch = 5， batch_size = 1200，GPUs_nu
 |     DistributedDataParallel + amp      |    8679     |   4680   |        46.74         |
 | DistributedDataParallel + amp + SyncBN |    8679     |   8173   |        46.78         |
 
+**注：** SyncBN: 同步BN（pytorch自带）; amp: 自动混合精度训练（pytorch自带）
+
 ## 结论
 
 （1）SyncBN 会影响训练速度，且在图像分类中作用不大，进行目标检测和图像分割时使用
