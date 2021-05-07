@@ -114,7 +114,7 @@ def main_worker(local_rank, args):
 
     if args.local_rank == 0:
         output_process(args.outpath)
-        logger = get_logger(args.outpath, 'DataParallel')
+        logger = get_logger(args.outpath, 'DistributedDataParallel')
         writer = SummaryWriter(args.outpath)
 
     # distributed init

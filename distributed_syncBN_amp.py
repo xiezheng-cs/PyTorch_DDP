@@ -71,7 +71,7 @@ parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='g
 parser.add_argument('--local_rank', default=0, type=int, help='node rank for distributed training')
 # amp
 parser.add_argument('--use_amp', dest='use_amp', default=True, type=bool, help='use automatic mixed precision (amp)')
-parser.add_argument('--sync_batchnorm', dest='sync_batchnorm', default=True, type=bool, help='use sync batchnorm')
+parser.add_argument('--sync_batchnorm', dest='sync_batchnorm', default=False, type=bool, help='use sync batchnorm')
 
 # parser.print_help()
 # assert False, 'Stop !'
@@ -117,7 +117,7 @@ def main_worker(local_rank, args):
 
     if args.local_rank == 0:
         output_process(args.outpath)
-        logger = get_logger(args.outpath, 'DataParallel')
+        logger = get_logger(args.outpath, 'DistributedDataParallel_amp')
         writer = SummaryWriter(args.outpath)
 
     # distributed init
@@ -141,6 +141,8 @@ def main_worker(local_rank, args):
     if dist.is_available() and dist.is_initialized() and args.sync_batchnorm:
         ddp_print("=> using sync BN", logger, local_rank)
         model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
+    else:
+        ddp_print("=> not use sync BN", logger, local_rank)
 
     model = model.cuda(device=local_rank)
     # When using a single GPU per process and per
