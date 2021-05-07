@@ -6,7 +6,6 @@
 # @File    : distributed_syncBN_amp.py
 
 
-import csv
 import argparse
 import os
 import random
@@ -24,7 +23,8 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
-
+import torch.cuda.amp.autocast as autocast
+import torch.cuda.amp.GradScaler as GradScaler
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
@@ -62,14 +62,17 @@ parser.add_argument('-p', '--print-freq', default=10, type=int, metavar='N', hel
 parser.add_argument('-e', '--evaluate', dest='evaluate', default=False, type=bool, help='evaluate model on validation set')
 parser.add_argument('--pretrained', dest='pretrained', default=False, type=bool, help='use pre-trained model')
 parser.add_argument('--seed', default=None, type=int, help='seed for initializing training')
-
-# distributed
-parser.add_argument('--local_rank', default=0, type=int, help='node rank for distributed training')
-
+# xiezheng add
 parser.add_argument('--gpus', default='0,1,2', metavar='gpus_id', help='N gpus for training')
 parser.add_argument('--outpath', metavar='DIR', default='./output_ddp', help='path to output')
 parser.add_argument('--lr-scheduler', metavar='LR scheduler', default='steplr', help='LR scheduler', dest='lr_scheduler')
 parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='gamma')
+# distributed
+parser.add_argument('--local_rank', default=0, type=int, help='node rank for distributed training')
+# amp
+parser.add_argument('--use_amp', dest='use_amp', default=True, type=bool, help='use automatic mixed precision (amp)')
+parser.add_argument('--sync_batchnorm', dest='sync_batchnorm', default=True, type=bool, help='use sync batchnorm')
+
 # parser.print_help()
 # assert False, 'Stop !'
 
@@ -134,6 +137,11 @@ def main_worker(local_rank, args):
         ddp_print('=> creating model: {}'.format(args.arch), logger, local_rank)
         model = models.__dict__[args.arch]()
 
+    # sync BN
+    if dist.is_available() and dist.is_initialized() and args.sync_batchnorm:
+        ddp_print("=> using sync BN", logger, local_rank)
+        model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
+
     model = model.cuda(device=local_rank)
     # When using a single GPU per process and per
     # DistributedDataParallel, we need to divide the batch size
@@ -180,6 +188,9 @@ def main_worker(local_rank, args):
         validate(val_loader, model, criterion, args, logger, writer, epoch=-1, local_rank=local_rank)
         return 0
 
+    # amp
+    scaler = GradScaler(enabled=args.use_amp)
+
     total_start = time.time()
     for epoch in range(args.start_epoch, args.epochs):
         # DDP
@@ -190,7 +201,7 @@ def main_worker(local_rank, args):
         lr_scheduler.step(epoch)
 
         # train for every epoch
-        train(train_loader, model, criterion, optimizer, epoch, args, logger, writer, local_rank)
+        train(train_loader, model, criterion, optimizer, epoch, args, logger, writer, local_rank, scaler)
 
         # evaluate on validation set
         acc1 = validate(val_loader, model, criterion, args, logger, writer, epoch, local_rank)
@@ -222,7 +233,7 @@ def main_worker(local_rank, args):
         writer.close()
 
 
-def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer, local_rank):
+def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer, local_rank, scaler):
     batch_times = AverageMeter('Time', ':6.3f')
     data_times  = AverageMeter('Data', ':6.3f')
     losses = AverageMeter('Loss', ':.4e')   # 4e表示科学记数法中的4位小数
@@ -241,8 +252,9 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         target = target.cuda(local_rank, non_blocking=True)
 
         # compute output
-        output = model(images)
-        loss = criterion(output, target)
+        with autocast(enabled=args.use_amp):
+            output = model(images)
+            loss = criterion(output, target)
 
         # measure accuracy and record loss
         acc1 = accuracy(output, target, 1)
@@ -255,10 +267,11 @@ def train(train_loader, model, criterion, optimizer, epoch, args, logger, writer
         losses.update(reduced_loss.item(), images.size(0))
         top1.update(reduced_acc1, images.size(0))
 
-        # compute gradient and do SGD step
+        # compute gradient and do SGD step: with amp
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
         optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
 
         # measure elapsed time
         batch_times.update(time.time() - end)
