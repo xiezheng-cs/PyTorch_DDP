@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b5c033c-d690-4c43-b908-7c119faca404" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/distributed_syncBN_amp.py" afterPath="$PROJECT_DIR$/distributed_syncBN_amp.py" />
-      <change beforePath="$PROJECT_DIR$/start.sh" afterPath="$PROJECT_DIR$/start.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,41 +21,8 @@
         <entry file="file://$PROJECT_DIR$/start.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
-              <caret line="3" column="94" lean-forward="true" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
+              <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="126" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
-              <folding>
-                <element signature="e#244#859#0" expanded="false" />
-                <element signature="e#899#1302#0" expanded="false" />
-                <element signature="e#1339#1604#0" expanded="false" />
-                <element signature="e#1645#1750#0" expanded="false" />
-                <element signature="e#1897#2486#0" expanded="false" />
-                <element signature="e#2882#3063#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="distributed.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/distributed.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="121" column="42" lean-forward="false" selection-start-line="121" selection-start-column="42" selection-end-line="121" selection-end-column="42" />
-              <folding>
-                <element signature="e#140#150#0" expanded="true" />
-                <element signature="e#6786#6929#0" expanded="false" />
-                <element signature="e#7222#7347#0" expanded="false" />
-                <element signature="e#9250#11446#0" expanded="false" />
-                <element signature="e#11538#13401#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -65,13 +30,12 @@
       <file leaf-file-name="distributed_syncBN_amp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="240" column="0" lean-forward="true" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
+            <state relative-caret-position="5522">
+              <caret line="335" column="0" lean-forward="true" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
               <folding>
                 <element signature="e#151#166#0" expanded="true" />
-                <element signature="e#7337#7480#0" expanded="false" />
-                <element signature="e#7773#7898#0" expanded="false" />
-                <element signature="e#12271#14136#0" expanded="false" />
+                <element signature="e#7396#7539#0" expanded="false" />
+                <element signature="e#7832#7957#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -348,33 +312,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
-          <folding>
-            <element signature="e#244#859#0" expanded="false" />
-            <element signature="e#899#1302#0" expanded="false" />
-            <element signature="e#1339#1604#0" expanded="false" />
-            <element signature="e#1645#1750#0" expanded="false" />
-            <element signature="e#1897#2486#0" expanded="false" />
-            <element signature="e#2882#3063#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Anaconda3/Lib/site-packages/torch/distributed/distributed_c10d.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="314" column="34" lean-forward="false" selection-start-line="314" selection-start-column="23" selection-end-line="314" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Anaconda3/Lib/site-packages/torch/cuda/amp/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="35" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -393,23 +334,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+          <folding>
+            <element signature="e#244#859#0" expanded="false" />
+            <element signature="e#899#1302#0" expanded="false" />
+            <element signature="e#1339#1604#0" expanded="false" />
+            <element signature="e#1645#1750#0" expanded="false" />
+            <element signature="e#1897#2486#0" expanded="false" />
+            <element signature="e#2882#3063#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/start.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
-          <caret line="3" column="94" lean-forward="true" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
+          <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="126" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/Lib/site-packages/torch/cuda/amp/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="35" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/distributed_syncBN_amp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="240" column="0" lean-forward="true" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
+        <state relative-caret-position="5522">
+          <caret line="335" column="0" lean-forward="true" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
           <folding>
             <element signature="e#151#166#0" expanded="true" />
-            <element signature="e#7337#7480#0" expanded="false" />
-            <element signature="e#7773#7898#0" expanded="false" />
-            <element signature="e#12271#14136#0" expanded="false" />
+            <element signature="e#7396#7539#0" expanded="false" />
+            <element signature="e#7832#7957#0" expanded="false" />
           </folding>
         </state>
       </provider>

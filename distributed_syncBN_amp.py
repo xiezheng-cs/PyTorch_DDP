@@ -23,8 +23,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
-import torch.cuda.amp.autocast as autocast
-import torch.cuda.amp.GradScaler as GradScaler
+from torch.cuda.amp import autocast, GradScaler
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
@@ -64,7 +63,8 @@ parser.add_argument('--pretrained', dest='pretrained', default=False, type=bool,
 parser.add_argument('--seed', default=None, type=int, help='seed for initializing training')
 # xiezheng add
 parser.add_argument('--gpus', default='0,1,2', metavar='gpus_id', help='N gpus for training')
-parser.add_argument('--outpath', metavar='DIR', default='./output_ddp', help='path to output')
+# parser.add_argument('--outpath', metavar='DIR', default='./output_ddp', help='path to output')
+parser.add_argument('--outpath', metavar='DIR', default='./output_ddp_amp', help='path to output')
 parser.add_argument('--lr-scheduler', metavar='LR scheduler', default='steplr', help='LR scheduler', dest='lr_scheduler')
 parser.add_argument('--gamma', default=0.1, type=float, metavar='gamma', help='gamma')
 # distributed
