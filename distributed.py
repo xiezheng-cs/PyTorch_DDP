@@ -13,6 +13,7 @@ import random
 import shutil
 import time
 import warnings
+import numpy as np
 
 import torch
 import torch.nn as nn
@@ -90,8 +91,9 @@ def main():
     if args.seed is not None:
         # setting seed
         random.seed(args.seed)
+        np.random(args.seed)
         torch.manual_seed(args.seed)
-        torch.cuda.manual_seed(args.seed)    # Add
+        torch.cuda.manual_seed_all(args.seed)    # Add
         cudnn.deterministic = True
         cudnn.benchmark = False
         warnings.warn('You have chosen to seed training.'
