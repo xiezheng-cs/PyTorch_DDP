@@ -5,7 +5,9 @@
 model = resnet18，dataset = ImageNet，epoch = 5， batch_size = 1200，GPUs_num = 3 @TITAN Xp
 
 CUDA_VISIBLE_DEVICES=0,1,2 python dataparallel.py
+
 CUDA_VISIBLE_DEVICES=0,1,2 python -m torch.distributed.launch --nproc_per_node=3 --master_port=23334 distributed.py
+
 CUDA_VISIBLE_DEVICES=0,1,2 python -m torch.distributed.launch --nproc_per_node=3 --master_port=23334 distributed_syncBN_amp.py
 
 ## 测试结果
